@@ -26,6 +26,7 @@
 动画示意如下：
 
 ![](http://images2015.cnblogs.com/blog/1070222/201612/1070222-20161222172931276-1285608522.gif)
+
 (桌面录像gif动画由软件[screenToGif](http://pan.baidu.com/s/1c2LVOPi)制作)
 
 ----------
