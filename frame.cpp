@@ -31,7 +31,6 @@ Frame::Frame(GraphWidget *graphWidget)
 
 QRectF Frame::boundingRect() const
 {
-
     return rect;
 }
 
@@ -40,7 +39,6 @@ QPainterPath Frame::shape() const
     QPainterPath path;
     path.addRect(rect);
     return path;
-
 }
 
 void Frame::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
@@ -48,7 +46,5 @@ void Frame::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
     painter->setPen(Qt::NoPen);
     painter->setBrush(Qt::darkGray);
-
-
     painter->drawRect(rect);
 }

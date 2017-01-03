@@ -16,16 +16,26 @@ class GameWidget : public QWidget
 public:
     explicit GameWidget(QWidget *parent = 0);
 
+
 signals:
 
 public slots:
-    void setPosition();
+    void showPosition();
+
+    void start();
+    void pause();
+    void reset();
 
 private:
     QLabel *labelBall;
     QLabel *labelHandle;
     QLineEdit *editBall;
     QLineEdit *editHandle;
+
+    QPushButton* startButton;//开始
+    QPushButton* pauseButton;//暂停
+    QPushButton* restartButton;//重置，重新开始
+    //QPushButton* startButton;//
 
     GraphWidget *showwidget;
 

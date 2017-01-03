@@ -12,23 +12,22 @@
 Ball::Ball(GraphWidget *graphWidget) : graph(graphWidget)
 {
     setFlag(ItemIsMovable);
-        setCacheMode(DeviceCoordinateCache);
-        setZValue(1);
-        //运动参数初始化
-        speed = 500;//运动速度为100像素每秒；
-        angle = -PI/6.0;
-
-
-        ratio = 2;//图形比例
-        Radius  = 20*ratio;
+    setCacheMode(DeviceCoordinateCache);
+    setZValue(1);
+    //运动参数初始化
+    speed = 0;//运动速度为100像素每秒；
+    angle = -PI/6.0;
+    Reset();//重置球的位置和方向
+    ratio = 2;//图形比例
+    Radius  = 20*ratio;
 }
 bool Ball::advance()
 {
     qreal xvel = 0;
     qreal yvel = 0;
 
-    xvel =speed*0.01*qCos(angle);
-    yvel = speed*0.01*qSin(angle);
+    xvel =speed*1.0/FRECUENCY *qCos(angle);
+    yvel = speed*1.0/FRECUENCY *qSin(angle);
 
     newPos = pos() + QPointF(xvel, yvel);
 
@@ -73,10 +72,6 @@ bool Ball::collisionCalcualte(collisionType direction)//计算碰撞后的速度
 //        //将嵌入到Handle的 ball退出来
 //        angle = angle+ PI; //angle 是由Handle指向ball
 
-
-
-
-
     }
 
 
@@ -85,9 +80,9 @@ return true;
 
 QRectF Ball::boundingRect() const
 {
-    qreal adjust = 2;
-    return QRectF(-10*ratio - adjust*ratio, -10*ratio - adjust*ratio,
-                  23*ratio + adjust*ratio, 23*ratio + adjust*ratio);
+    qreal adjust = 1;
+    return QRectF(-10*ratio + adjust*ratio, -10*ratio + adjust*ratio,
+                  20*ratio - 2*adjust*ratio, 20*ratio - 2*adjust*ratio);
 }
 
 QPainterPath Ball::shape() const
@@ -121,4 +116,20 @@ void Ball::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 
   //    painter->drawEllipse(-10*ratio*0.8, -10*ratio*0.8, 20*ratio*0.8, 20*ratio*0.8);//画圆
       //painter->drawRect(QRectF());
+}
+void Ball::setSpeed(qreal s)
+{
+    speed = s;
+
+}
+void Ball::setAngle(qreal a)
+{
+    angle = a;
+}
+//重置球的位置和方向
+void Ball::Reset()
+{
+   setPos(0,-400);
+   int rand = qrand()%100;
+   angle =0.1*PI+ 0.8*PI*rand/100.0;
 }
